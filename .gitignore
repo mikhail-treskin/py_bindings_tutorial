@@ -1,0 +1,3 @@
+cmake-build-debug
+python/cffi_demo/lib
+venv
