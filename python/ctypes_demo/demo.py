@@ -21,7 +21,7 @@ lib.func_ret_double.restype = ctypes.c_double
 lib.func_ret_double.argtypes = [ctypes.c_double]
 
 lib.func_ret_str.restype = ctypes.c_char_p
-lib.func_ret_str.argtypes = [ctypes.POINTER(ctypes.c_char), ]
+lib.func_ret_str.argtypes = ctypes.c_char_p
 
 lib.func_many_args.restype = ctypes.c_char
 lib.func_many_args.argtypes = [ctypes.c_int, ctypes.c_double, ctypes.c_char, ctypes.c_short]
