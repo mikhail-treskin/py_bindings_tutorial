@@ -10,7 +10,7 @@ import sys
 import tempfile
 from contextlib import contextmanager
 import ctypes
-import platform
+from sys import platform
 
 # use_errno parameter is optional, because I'm not checking errno anyway.
 libc = ctypes.CDLL(ctypes.util.find_library('c'), use_errno=True)

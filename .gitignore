@@ -1,3 +1,4 @@
 python/cffi_demo/lib
 venv
 c_library/build
+c_library/cmake-build-debug

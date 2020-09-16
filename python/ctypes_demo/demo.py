@@ -6,7 +6,7 @@ import random
 from timeit import default_timer
 # Loading library
 script_dir = os.path.dirname(__file__)
-lib_path = os.path.join(script_dir, os.pardir, os.pardir, 'cmake-build-debug', 'libbindings_demo.dylib')
+lib_path = os.path.join(script_dir, os.pardir, os.pardir, 'c_library', 'build', 'libbindings_demo.dylib')
 lib = ctypes.CDLL(lib_path)
 
 ##
@@ -21,7 +21,7 @@ lib.func_ret_double.restype = ctypes.c_double
 lib.func_ret_double.argtypes = [ctypes.c_double]
 
 lib.func_ret_str.restype = ctypes.c_char_p
-lib.func_ret_str.argtypes = ctypes.c_char_p
+lib.func_ret_str.argtypes = [ctypes.c_char_p, ]
 
 lib.func_many_args.restype = ctypes.c_char
 lib.func_many_args.argtypes = [ctypes.c_int, ctypes.c_double, ctypes.c_char, ctypes.c_short]
@@ -60,15 +60,16 @@ print("=" * 100)
 print("Manipulating with arrays:\n")
 # Pointer from numpy ndarray
 arr = np.asarray([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=np.int32)
-data_p = arr.ctypes.data_as(ctypes.c_void_p)
+data_p = arr.ctypes.data_as(ctypes.POINTER(ctypes.c_int))
 arr_size = arr.size
 el_size = arr.itemsize
 dtype = str(arr.dtype).encode('utf-8')
 
 lib.arr_minus_one.restype = None
-lib.arr_minus_one.argtypes = [ctypes.c_void_p, ctypes.c_uint, ctypes.c_uint, ctypes.c_char_p]
+lib.arr_minus_one.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_uint]
 print(f"Python numpy array:\n {arr}")
-lib.arr_minus_one(data_p, arr_size, el_size, dtype)
+lib.arr_minus_one(data_p, arr_size)
+print(f"Python numpy array:\n {arr}")
 
 # Pointer from python list
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -76,8 +77,8 @@ data_p = (ctypes.c_int * len(arr))(*arr)
 arr_size = 9
 el_size = 4
 dtype = "int32".encode("utf-8")
-print(f"Python list:\n {arr}")
 lib.arr_minus_one(data_p, arr_size, el_size, dtype)
+print(f"Python list:\n {arr}")
 
 # numpy array from pointer
 lib.gen_static_arr.restype = ctypes.POINTER(ctypes.c_int)
