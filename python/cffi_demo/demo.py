@@ -70,6 +70,6 @@ except ImportError:  # compile module if not found
                    )
     ffi.compile(tmpdir='./out_of_line_api')
 
-
+# dlopen not required
 res = out_of_line_api_lib.func_ret_str("Some str".encode("utf-8"))
 print(f"From Python Script: {ffi.string(res).decode('utf-8')}")
