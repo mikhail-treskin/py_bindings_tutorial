@@ -47,7 +47,7 @@ print(f"From Python Script: {ffi.string(res).decode('utf-8')}")
 
 """Out-of-Line API Mode"""
 print("=" * 100)
-print("Out-of-Line ABI Mode Demo:\n")
+print("Out-of-Line API Mode Demo:\n")
 try:
     from python.cffi_demo.out_of_line_api._bindings_demo import ffi as out_of_line_api_ffi
     from python.cffi_demo.out_of_line_api._bindings_demo import lib as out_of_line_api_lib
@@ -68,7 +68,7 @@ except ImportError:  # compile module if not found
                    libraries=["bindings_demo"],
                    library_dirs=[os.path.dirname(lib_path)],
                    )
-    ffi.compile(tmpdir='./out_of_line_api')
+    ffi.compile(tmpdir='./out_of_line_api', verbose=True)
 
 # dlopen not required
 res = out_of_line_api_lib.func_ret_str("Some str".encode("utf-8"))

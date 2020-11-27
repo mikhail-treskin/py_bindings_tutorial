@@ -23,3 +23,5 @@ char func_many_args(int val1, double val2, char val3, short val4) {
     printf("From C Library: func_many_args: int - %d, double - %f, char - %c, short - %d\n", val1, val2, val3, val4);
     return val3;
 }
+
+void do_nothing_function() {}
