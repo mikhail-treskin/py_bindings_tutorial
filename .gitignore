@@ -1,5 +1,6 @@
 python/cffi_demo/out_of_line_abi
 python/cffi_demo/out_of_line_api
+cffi_libs
 venv
 c_library/build
 c_library/cmake-build-debug
