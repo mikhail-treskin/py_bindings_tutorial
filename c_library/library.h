@@ -1,5 +1,5 @@
 //  CFFI doesn't support directives in headers
-//  So for compatibility reason all includes moved to .c files
+//  For compatibility between ctypes and CFFI all includes moved to .c files
 //#include <stdio.h>
 //#include <string.h>
 //#include <unistd.h>
