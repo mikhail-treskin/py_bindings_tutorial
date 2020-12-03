@@ -81,25 +81,26 @@ lib.arr_minus_one(data_p, arr_size, el_size, dtype)
 print(f"Python list:\n {arr}")
 
 # numpy array from pointer
-lib.gen_static_arr.restype = ctypes.POINTER(ctypes.c_int)
-lib.gen_static_arr.argtypes = None
-data_p = lib.gen_static_arr()
+lib.gen_arr.restype = ctypes.POINTER(ctypes.c_int)
+lib.gen_arr.argtypes = [ctypes.c_int,]
+array_size = 20
+data_p = lib.gen_arr(array_size)
 
 # Create from ctypes array
-ctypes_arr = (ctypes.c_int * 10).from_address(ctypes.addressof(data_p.contents))
-flat_arr = np.ctypeslib.as_array(ctypes_arr, shape=(2, 5))  # Shape ignored
+ctypes_arr = (ctypes.c_int * array_size).from_address(ctypes.addressof(data_p.contents))
+flat_arr = np.ctypeslib.as_array(ctypes_arr, shape=(4, 5))  # Shape ignored
 print(f"Flat numpy array:\n {flat_arr}")
 # Create from pointer directly
-shaped_array = np.ctypeslib.as_array(data_p, shape=(2, 5))
+shaped_array = np.ctypeslib.as_array(data_p, shape=(4, 5))
 print(f"Shaped numpy array:\n {shaped_array}")
 
-lib.gen_arr.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_uint]
-lib.gen_arr.restype = None
+lib.fill_arr.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_uint]
+lib.fill_arr.restype = None
 
 # Pre-allocated data
 i_arr = (ctypes.c_int * 15)()
 i_p = ctypes.cast(i_arr, ctypes.POINTER(ctypes.c_int))
-lib.gen_arr(i_p, 15)
+lib.fill_arr(i_p, 15)
 # Build numpy array
 shaped_array = np.ctypeslib.as_array(i_p, shape=(3, 5))
 print(f"Shaped numpy array:\n {shaped_array}")
@@ -107,7 +108,7 @@ print(f"Shaped numpy array:\n {shaped_array}")
 # Write directly to array's memory
 arr = np.ndarray(shape=(5, 5), dtype=np.int32)
 arr_p = arr.ctypes.data_as(ctypes.POINTER(ctypes.c_int))
-lib.gen_arr(arr_p, 25)
+lib.fill_arr(arr_p, 25)
 print(f"Shaped numpy array:\n {arr}")
 
 # libc and find_library

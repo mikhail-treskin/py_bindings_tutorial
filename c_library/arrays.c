@@ -6,22 +6,20 @@
 #include <stdlib.h>
 
 void arr_minus_one(int *data, unsigned int arr_size) {
-    printf("From C Library:\n");
     for (int i = 0; i < arr_size; ++i) {
         data[i] = data[i] - 1;
-        printf("%d ", data[i]);
     }
 }
 
-int *gen_static_arr() {
-    static int arr[10];
-    for (int i = 0; i < 10; ++i) {
+int *gen_arr(unsigned int size) {
+    int *arr = malloc(sizeof(int) * size);
+    for (unsigned int i = 0; i < size; ++i) {
         arr[i] = i;
     }
     return arr;
 }
 
-void gen_arr(int *arr, unsigned int size) {
+void fill_arr(int *arr, unsigned int size) {
     for (int i = 0; i < size; ++i) {
         arr[i] = i;
     }

@@ -24,4 +24,4 @@ char func_many_args(int val1, double val2, char val3, short val4) {
     return val3;
 }
 
-void do_nothing_function() {}
+char* do_nothing_function(char *some_str) {return some_str;}
