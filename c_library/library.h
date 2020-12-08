@@ -17,9 +17,9 @@ char func_many_args(int val1, double val2, char val3, short val4);
 void arr_minus_one(int *data, unsigned int arr_size);
 int *gen_arr(unsigned int size);
 void fill_arr(int *arr, unsigned int size);
-void upd_arr(int *arr, unsigned int size, int(*callback)(int));
 void qsort_wrap(int *arr, unsigned int size, unsigned int el_size);
 int comp (const int *a, const int *b);
+void upd_arr(int *arr, unsigned int size, int(*callback)(int));
 void free_arr(int *p);
 
 char *do_nothing_function(char *some_str);

@@ -40,6 +40,6 @@ int comp(const int *a, const int *b) {
 }
 
 void free_arr(int *p) {
-    printf("C: memory deallocation invoked");
+    printf("C: memory deallocation invoked\n");
     free(p);
 }
