@@ -19,6 +19,12 @@ int *gen_arr(unsigned int size) {
     return arr;
 }
 
+void upd_arr(int *arr, unsigned int size, int(*callback)(int)) {
+    for (int i = 0; i < size; ++i) {
+        arr[i] = callback(i);
+    }
+}
+
 void fill_arr(int *arr, unsigned int size) {
     for (int i = 0; i < size; ++i) {
         arr[i] = i;
@@ -31,4 +37,9 @@ void qsort_wrap(int *arr, unsigned int size, unsigned int el_size) {
 
 int comp(const int *a, const int *b) {
     return *a - *b;
+}
+
+void free_arr(int *p) {
+    printf("C: memory deallocation invoked");
+    free(p);
 }
