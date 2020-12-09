@@ -23,3 +23,5 @@ void upd_arr(int *arr, unsigned int size, int(*callback)(int));
 void free_arr(int *p);
 
 char *do_nothing_function(char *some_str);
+
+int fib(int n);

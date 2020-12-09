@@ -1,5 +1,9 @@
-python/cffi_demo/out_of_line_abi
-python/cffi_demo/out_of_line_api
+python/cython/pure_cython/build
+python/cython/pure_cython/*.c
+python/cython/pure_cython/*.so
+python/cython/extern_c/build
+python/cython/extern_c/*.c
+python/cython/extern_c/*.so
 cffi_libs
 venv
 c_library/build
