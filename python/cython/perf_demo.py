@@ -48,9 +48,9 @@ fastest_mean = np.min([py_mean, py_int_mean, cy_cdef_mean, cy_cpdef_mean, extern
 headers = ["Calculation mode", "Mean, s", "Ratio to fastest"]
 results = [
     ["Python", py_mean, fastest_mean / py_mean],
-    ["Python with types", py_int_mean, fastest_mean / py_int_mean],
+    ["Cython def with types", py_int_mean, fastest_mean / py_int_mean],
     ["Cython cdef", cy_cdef_mean, fastest_mean / cy_cdef_mean],
-    ["Cython pdef", cy_cpdef_mean, fastest_mean / cy_cpdef_mean],
+    ["Cython cpdef", cy_cpdef_mean, fastest_mean / cy_cpdef_mean],
     ["Extern C", extern_c_mean, fastest_mean / extern_c_mean],
 ]
 print(f"Fibonacci sequence calculation (up to {fib_val}'th element) times:")
